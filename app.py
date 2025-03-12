@@ -24,8 +24,6 @@ def classify():
     doodle = request.get_json()['doodle']
     doodle = np.array(doodle)
     pred = model.predict(np.expand_dims(doodle, axis=0).astype(np.float16))[0].astype(np.float64)
-    # doodle = doodle.reshape((1, 28, 28, 1))
-    # pred = model.predict(doodle)
     return {classes[i]: pred[i] for i in range(35)}
     
 if __name__ == '__main__':

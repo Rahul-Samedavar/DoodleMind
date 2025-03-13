@@ -2,8 +2,40 @@ from flask import Flask, request, render_template
 import numpy as np
 from tensorflow.keras.models import load_model
 
+from tensorflow.keras import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Conv2D, Flatten, Dense, Dropout
+from tensorflow.keras.metrics import Precision, Recall, TopKCategoricalAccuracy
+from tensorflow.keras.optimizers import Adamax
+
+
+
+#  Replace this with any version of interest: (Available: 20, 42, 44, 45, 46, 48, 50 )
+version = 50
+WEIGHTS_PATH = f"Weights/v_{version}.h5"
+
+
+model = Sequential([
+    Conv2D(16, (3,3), activation='relu', input_shape=(28, 28, 1)),
+    MaxPooling2D(2,2),
+    Conv2D(64, (3,3), activation='relu'),
+    MaxPooling2D(2,2),
+    Flatten(),
+    Dropout(0.2),
+    Dense(128, activation='relu'),
+    Dropout(0.2),
+    Dense(64, activation='relu'),
+    Dropout(0.2),
+    Dense(35, activation='softmax') 
+])
+model.compile(
+    optimizer=Adamax(0.001),
+    loss='categorical_crossentropy',
+    metrics=['accuracy',  TopKCategoricalAccuracy(3), Precision(), Recall()]
+)
+
+model.load_weights(WEIGHTS_PATH) 
+
 app = Flask(__name__)
-model = load_model(r"Models\model_epoch_44.keras")
 
 classes = ['Airplane', 'Alarm Clock', 'Ant', 'Bear', 'Beard', 'Bird', 'Bus',
        'Cookie', 'Cow', 'Donut', 'Hand', 'Hat', 'Key', 'Moon',

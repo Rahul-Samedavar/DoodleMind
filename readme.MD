@@ -53,15 +53,15 @@ The application will be available at `http://localhost:5000`.
 ### **1. Dataset Preparation**
 - The dataset consists of 35 doodle categories from Google's Quick, Draw!
 
-  ![](Images\Original-Data-Distribution.png)
+  ![](Images/Original-Data-Distribution.png)
 - Subset containing 12000 doodles for each class was choosen too balance the dataset.
-  ![](Images\Balanced-Data-Distribution.png)
+  ![](Images/Balanced-Data-Distribution.png)
 - Images were resized to **28x28 grayscale** format for model compatibility.
 - Data was normalized to a **[0,1]** range to improve generalization.
 - numpy.float16 data type was used for memory efficiency.
 - Test split : 0.15
 
-![](Images\Sample-Data.png)
+![](Images/Sample-Data.png)
 
 ### **2. Model Architecture**
 A CNN architecture was designed with the following layers:
@@ -80,7 +80,7 @@ model = Sequential([
     Dense(35, activation='softmax') 
 ])
 ```
-![](Images\model-visual.png)
+![](Images/model-visual.png)
 ```bash
 Model: "sequential"
 _________________________________________________________________
@@ -117,7 +117,7 @@ Non-trainable params: 0
 _________________________________________________________________
 ```
 
-![](Images\model.png)
+![](Images/model.png)
 
 ### **3. Loss Function & Optimization**
 - **Loss Function**: Categorical Crossentropy (since it's a multi-class classification problem)
@@ -150,18 +150,18 @@ model.compile(
     ```
 - **Evaluation Metrics**: Accuracy, Top K Categorical Accuracy with k = 3, Precision, and Recall for model effectiveness
 
-![](Images\Training-Metrics.png)
+![](Images/Training-Metrics.png)
 
 ### **5. Testing and Model Selection**
 - Models saved in each epoch are evluated using the test dataset.
 
-![](Images\Testing-Metrics.png)
+![](Images/Testing-Metrics.png)
 
 - Model from epoch 50 showed the best accuracy of 86.29%.
 - Model from epoch 44 showed the best Top K Categorical Accuracy of 95.31%.
 - This scores are acceptable as they not only indicate good predictions, but also indicate the similarities between some classes. This can be understood from Confusion Matrix.
 
-![](Images\confusion_matrix.png)
+![](Images/confusion_matrix.png)
 
 - As an example, we can see that the model predicted nearly half of the school busses as bus and 523 busses as school bus
 - Although this reduces accuracy, it's a good sign considering both classes look nearly the same in doodles.
@@ -171,6 +171,6 @@ model.compile(
 - Integrated with a real-time drawing interface for inference
 - Optimized preprocessing to match training data conditions (grid-based downscaling to 28x28 format)
 
-![](Images\ant.png)
+![](Images/ant.png)
 ---
 

@@ -55,7 +55,7 @@ def home():
 def classify():
     doodle = request.get_json()['doodle']
     doodle = np.array(doodle)
-    pred = model.predict(np.expand_dims(doodle, axis=0).astype(np.float16))[0].astype(np.float64)
+    pred = model.predict(np.expand_dims(doodle, axis=0).astype(np.float16), verbose=0)[0].astype(np.float64)
     return {classes[i]: pred[i] for i in range(35)}
     
 if __name__ == '__main__':

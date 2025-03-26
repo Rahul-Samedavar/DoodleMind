@@ -11,6 +11,10 @@ This project focuses on developing a Convolutional Neural Network (CNN) model fo
 - Interactive UI with Dark Neon theme
 - Confidence-based prediction results with a probability bar visualization
 
+## Deployment
+- The Model and GUI has been deployed in HuggingFace space.
+- Access it from [here](https://huggingface.co/spaces/Rahul-Samedavar/DoodleClassifier)
+
 ## 🛠 Installation & Setup
 
 ### 1️⃣ **Clone the Repository**
